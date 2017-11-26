@@ -1,0 +1,25 @@
+{
+  "name": "assignment_test_driven_diary",
+  "version": "1.0.0",
+  "description": "Build a command line diary interface, driven and protected by a suite of comprehensive tests.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "nodemon --exec 'node_modules/.bin/jasmine'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BideoWego/assignment_test_driven_diary.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BideoWego/assignment_test_driven_diary/issues"
+  },
+  "homepage": "https://github.com/BideoWego/assignment_test_driven_diary#readme",
+  "dependencies": {
+    "jasmine": "^2.8.0"
+  }
+}

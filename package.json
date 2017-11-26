@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "nodemon --exec 'node_modules/.bin/jasmine'"
+    "test": "nodemon --ignore data/* --ignore spec/data/* --exec 'node_modules/.bin/jasmine'"
   },
   "repository": {
     "type": "git",

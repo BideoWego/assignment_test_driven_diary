@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Diary = require('../lib/diary');
 
 
@@ -18,8 +19,8 @@ describe('Diary', () => {
 
     it("adds the time/date of the entry's creation", () => {
       diary.entry('hello');
-      const then = diary.entries()[0].date.toISOString();
-      const now = new Date().toISOString();
+      const then = diary.entries()[0].date.toISOString().slice(0, 19);
+      const now = new Date().toISOString().slice(0, 19);
       expect(then).toBe(now);
     });
 
@@ -83,12 +84,32 @@ describe('Diary', () => {
   });
 
 
-  describe('.save()', () => {
-    it("persists the current state of the diary to the given file");
-  });
+  describe('persistence', () => {
+    let dataPath = './spec/data/diary.json';
 
 
-  describe('.load()', () => {
-    it("loads the state of the given diary from a file");
+    beforeEach(() => {
+      if (fs.existsSync(dataPath)) {
+        fs.unlinkSync(dataPath);
+      }
+      diary.entry('hello');
+      diary.save(dataPath);
+      diary = new Diary();
+      diary.load(dataPath);
+    });
+
+
+    describe('.save()', () => {
+      it("persists the current state of the diary to the given file", () => {
+        expect(diary.entries()[0].body).toBe('hello');
+      });
+    });
+
+
+    describe('.load()', () => {
+      it("loads the state of the given diary from a file", () => {
+        expect(diary.entries()[0].body).toBe('hello');
+      });
+    });
   });
 });
